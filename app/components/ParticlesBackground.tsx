@@ -1,6 +1,5 @@
 // components/ParticlesBackground.jsx
 "use client";
-import { loadFull } from 'tsparticles';
 import type { Engine } from 'tsparticles-engine';  // ← これがポイント
 import React from 'react';
 import Particles from 'react-tsparticles';
