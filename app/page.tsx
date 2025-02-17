@@ -9,7 +9,6 @@ import Home from './components/Home';
 import InterestsSection from './components/InterestsSection';
 import PublicationSection from './components/PublicationSection';
 import CVSection from './components/CVSection';
-import MiscSection from './components/MiscSection';
 import LinksSection from './components/LinksSection';
 
 // ※ ScrollAnimation が不要なら削除
