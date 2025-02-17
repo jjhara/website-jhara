@@ -1,11 +1,13 @@
 // components/ParticlesBackground.jsx
 "use client";
+import { loadFull } from 'tsparticles';
+import type { Engine } from 'tsparticles-engine';  // ← これがポイント
 import React from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles'; // ← 'tsparticles' から import
 
 export default function ParticlesBackground() {
-  const particlesInit = async (engine) => {
+  const particlesInit = async (engine: Engine) => {
     await loadFull(engine); // engine.checkVersion もこのバージョンならエラーになりにくい
   };
 
