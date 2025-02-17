@@ -1,0 +1,40 @@
+/* 
+  Markdown表示部分に付与するクラス 
+  （例: .markdown-body） 
+*/
+
+/* 全ての画像を最大幅300pxに制限し、高さは自動調整 */
+.markdown-body img {
+  max-width: 300px; /* 数値はお好みで */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* 中央寄せしたい場合 */
+}
+
+/* 特定の alt 属性を持つ画像だけを別サイズにしたい場合は属性セレクタ */
+.markdown-body img[alt="Profile Image"] {
+  max-width: 200px; 
+  border: 1px solid #ccc; /* 例: 枠線を付ける */
+}
+
+/* 箇条書きを左寄せにする例 */
+.markdown-body ul, .markdown-body ol {
+  margin: 0;
+  padding-left: 1.2em; /* 箇条書きのドットをやや左に */
+  list-style-position: outside; 
+  list-style-type: disc; /* ●のドット */
+}
+
+/* 見出しなど追加でカスタマイズしたい場合 */
+.markdown-body h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.markdown-body h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.markdown-body a {
+  color: #00FFFF; /* お好みの色に変更 */
+}
+/* ... 他も必要に応じて */
