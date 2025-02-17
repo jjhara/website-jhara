@@ -1,6 +1,6 @@
 # Research Motto
 
-Developping **supersmart** sensing techniques using **non-conventional** and **felxible** mathematical techiniques.
+Developping **supersmart** sensing techniques using **non-conventional** and **flexible** mathematical techiniques.
 
 ![Overview](/images/supersmart_1-100.jpg)
 
