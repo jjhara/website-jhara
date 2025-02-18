@@ -21,7 +21,7 @@ body {
 
 /* 全ての画像を最大幅300pxに制限し、高さは自動調整 */
 .markdown-body img {
-  max-width: 300px; /* 数値はお好みで */
+  max-width: 600px; /* 数値はお好みで */
   height: auto;
   display: block;
   margin: 0 auto; /* 中央寄せしたい場合 */
