@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'My Stylish App',
+  title: 'jhara-homepage',
   description: 'Description for My Stylish App',
   viewport: 'width=device-width, initial-scale=1', 
 }
