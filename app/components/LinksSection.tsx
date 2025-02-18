@@ -90,7 +90,7 @@ export default function LinksSection({ language }: LinksProps) {
         className="markdown-body"
         style={{
           width: '80%',
-          maxWidth: '600px',
+          maxWidth: '800px',
           color: '#FFF',
           textAlign: 'left',
         }}

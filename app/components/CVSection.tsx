@@ -90,9 +90,9 @@ export default function CVSection({ language }: CVProps) {
         className="markdown-body"
         style={{
           width: '80%',
-          fontSize: '12px',
+          fontSize: '18px',
           lineHeight: '1.3',
-          maxWidth: '600px',
+          maxWidth: '800px',
           color: '#FFF',
           textAlign: 'left',
         }}

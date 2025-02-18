@@ -93,9 +93,9 @@ export default function PublicationSection({ language }: PublicationProps) {
         className="markdown-body"
         style={{
           width: '80%',
-          fontSize: '12px',
+          fontSize: '16px',
           lineHeight: '1.3',
-          maxWidth: '600px',
+          maxWidth: '800px',
           color: '#FFF',
           textAlign: 'left',
         }}

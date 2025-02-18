@@ -83,7 +83,7 @@ export default function InterestsSection({ language }: InterestsProps) {
     >
       <div
         className="markdown-body"
-        style={{ width: '80%', maxWidth: '600px', color: '#FFF', textAlign: 'left' }}
+        style={{ width: '80%', maxWidth: '800px', color: '#FFF', textAlign: 'left' }}
       >
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>
