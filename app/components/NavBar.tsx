@@ -70,6 +70,7 @@ export default function NavBar({ onLanguageChange }: NavBarProps) {
     border: 'none',
     cursor: 'pointer',
     fontWeight: 'normal',
+    fontSize: '1.1rem', // ← NavBar内の文字をやや大きく (例)
   };
 
   return (
