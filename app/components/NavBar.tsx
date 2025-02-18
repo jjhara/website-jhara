@@ -1,13 +1,22 @@
 
-'use client'  // ← 最初に書く
+"use client";
 
-import React, { useState } from 'react'
-import { gsap } from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import React, { useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollToPlugin)
+gsap.registerPlugin(ScrollToPlugin);
 
-export default function NavBar() {
+/**
+ * NavBarProps:
+ *  - onLanguageChange: 親コンポーネントに言語切り替えを知らせる関数
+ * （"language" プロパティは削除）
+ */
+type NavBarProps = {
+  onLanguageChange: (lang: 'en' | 'ja') => void;
+};
+
+export default function NavBar({ onLanguageChange }: NavBarProps) {
   const navStyle: React.CSSProperties = {
     position: 'fixed',
     top: 0,
@@ -16,29 +25,42 @@ export default function NavBar() {
     color: '#fff',
     padding: '1rem',
     zIndex: 9999,
-  }
+    overflow: 'visible',
+  };
 
-  // 「現在どのボタンにホバーしているか」を持つstate
-  const [hoveredButton, setHoveredButton] = useState<string | null>(null)
+  // ホバー時にボタンを太字にする
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
-  // セクションへ移動するボタンのクリックハンドラ
   const handleScrollTo = (targetId: string) => {
     gsap.to(window, {
       duration: 1,
       scrollTo: targetId,
       ease: 'power2.out',
-    })
-  }
+    });
+  };
 
-  // 各ボタンのホバー時に呼ばれる
   const handleMouseEnter = (targetId: string) => {
-    setHoveredButton(targetId)
-  }
-
-  // ホバーが外れたらnullに戻す
+    setHoveredButton(targetId);
+  };
   const handleMouseLeave = () => {
-    setHoveredButton(null)
-  }
+    setHoveredButton(null);
+  };
+
+  // Languageドロップダウン
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+
+  // 親コンテナ全体で onMouseEnter/Leave → ボタンとドロップダウンの間移動でも消えない
+  const handleLangContainerMouseEnter = () => {
+    setLangMenuOpen(true);
+  };
+  const handleLangContainerMouseLeave = () => {
+    setLangMenuOpen(false);
+  };
+
+  const handleSelectLanguage = (lang: 'en' | 'ja') => {
+    onLanguageChange(lang);
+    setLangMenuOpen(false);
+  };
 
   // ボタン共通のスタイル
   const buttonBaseStyle: React.CSSProperties = {
@@ -47,12 +69,12 @@ export default function NavBar() {
     background: 'none',
     border: 'none',
     cursor: 'pointer',
-    // ここではfontWeightは "normal" で、ホバー中にboldへ変えます
     fontWeight: 'normal',
-  }
+  };
 
   return (
     <nav style={navStyle}>
+      {/* 左側のセクションボタン */}
       <button
         onClick={() => handleScrollTo('#home')}
         onMouseEnter={() => handleMouseEnter('#home')}
@@ -64,7 +86,6 @@ export default function NavBar() {
       >
         Home
       </button>
-
       <button
         onClick={() => handleScrollTo('#interests')}
         onMouseEnter={() => handleMouseEnter('#interests')}
@@ -76,7 +97,6 @@ export default function NavBar() {
       >
         Interests
       </button>
-
       <button
         onClick={() => handleScrollTo('#publication')}
         onMouseEnter={() => handleMouseEnter('#publication')}
@@ -88,7 +108,6 @@ export default function NavBar() {
       >
         Publication
       </button>
-
       <button
         onClick={() => handleScrollTo('#CV')}
         onMouseEnter={() => handleMouseEnter('#CV')}
@@ -100,7 +119,6 @@ export default function NavBar() {
       >
         CV
       </button>
-
       <button
         onClick={() => handleScrollTo('#links')}
         onMouseEnter={() => handleMouseEnter('#links')}
@@ -112,6 +130,83 @@ export default function NavBar() {
       >
         Links
       </button>
+
+      {/* 右上に Language コンテナ */}
+      <div
+        style={{
+          position: 'absolute',
+          right: '3rem',
+          top: '1rem',
+          whiteSpace: 'nowrap',
+          overflow: 'visible',
+        }}
+      >
+        {/* ホバー領域全体 */}
+        <div
+          style={{
+            position: 'relative',
+            display: 'inline-block',
+          }}
+          onMouseEnter={handleLangContainerMouseEnter}
+          onMouseLeave={handleLangContainerMouseLeave}
+        >
+          {/* Language ボタン */}
+          <button style={{ ...buttonBaseStyle, marginRight: 0 }}>
+            Language
+          </button>
+
+          {/* ドロップダウン */}
+          {langMenuOpen && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '100%',
+                right: 0,
+                background: '#333',
+                border: '1px solid #555',
+                padding: '0.5rem',
+              }}
+            >
+              <button
+                onClick={() => handleSelectLanguage('en')}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  background: 'none',
+                  border: 'none',
+                  color: '#fff',
+                  padding: '0.25rem 1rem',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                }}
+              >
+                English
+              </button>
+              <button
+                onClick={() => handleSelectLanguage('ja')}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  background: 'none',
+                  border: 'none',
+                  color: '#fff',
+                  padding: '0.25rem 1rem',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                }}
+              >
+                日本語
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </nav>
-  )
+  );
 }
+
+
+
+
+
+

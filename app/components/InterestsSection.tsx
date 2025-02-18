@@ -7,17 +7,23 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function InterestsSection() {
+// InterestsSection.tsx
+type InterestsProps = {
+  language: 'en' | 'ja';
+};
+
+
+export default function InterestsSection({ language }: InterestsProps) {
   const [content, setContent] = useState('')
   const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     // (1) Markdown読み込み
-    fetch('/contents/interests.md')
+    fetch(`/md-contents/${language}/interests.md`)
       .then((res) => res.text())
       .then((text) => setContent(text))
       .catch((err) => console.error(err))
-  }, [])
+  }, [language])
 
   useEffect(() => {
     // (2) GSAPアニメーション: 左からフェードイン → キープ → 右へフェードアウト

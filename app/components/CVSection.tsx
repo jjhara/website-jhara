@@ -7,22 +7,28 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// CVSection.tsx
+type CVProps = {
+  language: 'en' | 'ja';
+};
+
+
 /**
  * CVSection:
  *  - /contents/cv.md を読み込んで表示
  *  - スクロール時に「左→中央」フェードイン → 保持 → 「中央→右」フェードアウト
  */
-export default function CVSection() {
+export default function CVSection({ language }: CVProps) {
   const [content, setContent] = useState('')
   const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     // ① Markdown読み込み
-    fetch('/contents/cv.md')
+    fetch(`/md-contents/${language}/cv.md`)
       .then((res) => res.text())
       .then((text) => setContent(text))
       .catch((err) => console.error(err))
-  }, [])
+  }, [language])
 
   useEffect(() => {
     // ② GSAPアニメーション設定

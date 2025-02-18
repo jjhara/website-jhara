@@ -19,7 +19,7 @@ N/A
 ## Reviewing Experience
 - Reviewed for IEEE Transactions on Signal Processing
 - Reviewed for IEEE Signal Processing Letters
-- Reviewed for Transactions on Signal and Information Processing over Networks
+- Reviewed for IEEE Transactions on Signal and Information Processing over Networks
 - Reviewed for Sampling Theory, Signal Processing, and Data Analysis
 - Reviewed for Signal Processing
   

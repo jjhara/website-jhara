@@ -7,22 +7,28 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// InterestsSection.tsx
+type PublicationProps = {
+  language: 'en' | 'ja';
+};
+
+
 /**
  * PublicationSection:
  *  - /contents/publication.md を読み込んで表示
  *  - スクロール時に「左からフェードイン → しばらく保持 → 右へフェードアウト」
  */
-export default function PublicationSection() {
+export default function PublicationSection({ language }: PublicationProps) {
   const [content, setContent] = useState('')
   const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     // ① Markdown読み込み
-    fetch('/contents/publication.md')
+    fetch(`/md-contents/${language}/publication.md`)
       .then((res) => res.text())
       .then((text) => setContent(text))
       .catch((err) => console.error(err))
-  }, [])
+  }, [language])
 
   useEffect(() => {
     // ② GSAPアニメーション設定

@@ -7,22 +7,28 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// InterestsSection.tsx
+type LinksProps = {
+  language: 'en' | 'ja';
+};
+
+
 /**
  * LinksSection:
  *  - /contents/links.md を読み込んで表示
  *  - スクロール時に「左→中央フェードイン → 保持 → 右フェードアウト」
  */
-export default function LinksSection() {
+export default function LinksSection({ language }: LinksProps) {
   const [content, setContent] = useState('')
   const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     // 1) Markdown読み込み
-    fetch('/contents/links.md')
+    fetch(`/md-contents/${language}/links.md`)
       .then((res) => res.text())
       .then((text) => setContent(text))
       .catch((err) => console.error(err))
-  }, [])
+  }, [language])
 
   useEffect(() => {
     // 2) GSAPアニメ設定

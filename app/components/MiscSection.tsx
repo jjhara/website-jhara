@@ -7,22 +7,28 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// InterestsSection.tsx
+type MiscProps = {
+  language: 'en' | 'ja';
+};
+
+
 /**
  * MiscSection:
  *  - /contents/misc.md を読み込んで表示
  *  - スクロール時に「左→中央フェードイン → 保持 → 右フェードアウト」
  */
-export default function MiscSection() {
+export default function MiscSection({ language }: MiscProps) {
   const [content, setContent] = useState('')
   const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     // 1) Markdown読み込み
-    fetch('/contents/misc.md')
+    fetch(`/md-contents/${language}/misc.md`)
       .then((res) => res.text())
       .then((text) => setContent(text))
       .catch((err) => console.error(err))
-  }, [])
+  }, [language])
 
   useEffect(() => {
     // 2) GSAPアニメーション設定

@@ -9,6 +9,7 @@ Developping **supersmart** sensing techniques using **non-conventional** and **f
 ## Topics
 
 - Sampling theory
+- Sensor placement problem
 - Optimization
 - Graph signal processing
 - Multimedia analysis
